@@ -1,0 +1,22 @@
+version: '3'
+services:
+  db:
+    environment:
+      POSTGRES_DB: accord
+      POSTGRES_PASSWORD: supersecretpassword
+    image: "postgres:alpine"
+    volumes:
+      - db-data:/var/lib/postgresql/data/
+
+  accord-server:
+    build: .
+    ports:
+      - "13723:13723"
+    depends_on:
+      - db
+    command: sh -c "/wait && /accord-server -n" # to wait for postgres
+    environment:
+      - WAIT_HOSTS=db:5432
+      
+volumes:
+  db-data:

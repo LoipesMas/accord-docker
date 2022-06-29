@@ -1,0 +1,9 @@
+db_host = "db"
+db_port = ""
+db_user = "postgres"
+db_pass = "supersecretpassword"
+db_dbname = "accord"
+port = 13723
+operators = []
+whitelist_on = false
+allow_new_accounts = true
